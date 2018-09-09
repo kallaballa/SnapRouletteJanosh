@@ -9,7 +9,7 @@ function receive(handle, message)
     else
       local obj = JSON:decode(message)
       if obj[2] == "submit" then
-        local s = Janosh:size("/images/.")
+        local s = Janosh:size("/roulette/.")
 	if s == 0 then
 		return	
 	end
@@ -22,7 +22,7 @@ function receive(handle, message)
 end
 
 -- Open websocket
-Janosh:wsOpen(8121)
+Janosh:wsOpen(8131)
 Janosh:wsOnReceive(receive)
 
 Janosh:forever()
