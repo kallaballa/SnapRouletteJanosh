@@ -1,3 +1,3 @@
 export default {
-  socketUri: 'wss://liebt-dich.org:8120'
+  socketUri: 'wss://liebt-dich.org:8130'
 };
