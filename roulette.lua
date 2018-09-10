@@ -14,6 +14,8 @@ function receive(handle, message)
 		local i = math.random(s - 1)
         	Janosh:wsSend(handle,Janosh:raw("/roulette/#" .. i))
 	end
+	local output, code = Janosh:system("echo " .. obj[4] .. " | convert - -threshold 30% -format %c histogram:info:- | wc -l")
+	print(output)
         Janosh:append_t("/roulette/.", obj[4])
       end
     end
