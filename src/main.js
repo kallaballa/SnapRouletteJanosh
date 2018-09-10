@@ -95,8 +95,14 @@ var jc = new JpegCamera(theContainer, {
         element.appendChild(div);
   };
   
+  janosh.subscribe("notify", (value) => {
+  })
+
   janosh.onReceive((value) => {
-	makeImage(value);
+	if(value == "cheat")
+		alert("Please don't cheat. Submit proper snapshots");
+	else
+		makeImage(value);
   });
 
   janosh.onError((error) => {
