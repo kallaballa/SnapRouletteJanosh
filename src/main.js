@@ -78,6 +78,11 @@ var jc = new JpegCamera(theContainer, {
 
   function makeImage(base64) {
         var element = document.getElementById("images");
+        while (element.firstChild) {
+                element.removeChild(element.firstChild);
+        }
+
+	var element = document.getElementById("images");
         var div = document.createElement("div");
         div.style="display: inline;";
         var img = document.createElement("img");
@@ -90,13 +95,6 @@ var jc = new JpegCamera(theContainer, {
         element.appendChild(div);
   };
   
-  janosh.subscribe("clear", () => {
-        var element = document.getElementById("images");
-        while (element.firstChild) {
-                element.removeChild(element.firstChild);
-        }
-  }); 
- 
   janosh.onReceive((value) => {
 	makeImage(value);
   });
