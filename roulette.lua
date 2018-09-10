@@ -14,9 +14,15 @@ function receive(handle, message)
 		local i = math.random(s - 1)
         	Janosh:wsSend(handle,Janosh:raw("/roulette/#" .. i))
 	end
-	local output, code = Janosh:system("echo " .. obj[4] .. " | convert - -threshold 30% -format %c histogram:info:- | wc -l")
-	print(output)
-        Janosh:append_t("/roulette/.", obj[4])
+	-- detect cheaters by rejecting images with no considerable edges
+	local output = Janosh:capture("echo '" .. obj[4] .. "' | convert inline:- -threshold 30% -format %c histogram:info:- | wc -l 2>&1")
+	if output == "1\n" then
+		print(1)
+		Janosh:wsSend(handle, "cheat")
+	else
+        	Janosh:append_t("/roulette/.", obj[4])
+	end
+	
       end
     end
 end
