@@ -4,8 +4,8 @@ import API from 'janosh.js';
 import config from './config';
 
 var janosh = new API(config.socketUri);
-//import JpegCameraSwf from 'jpeg-camera-es6/lib/jpeg_camera.swf';
-//import 'script-loader!jpeg-camera-es6/lib/swfobject.min.js';
+//import JpegCameraSwf from '../node_modules/jpeg-camera/dist/jpeg_camera.swf';
+import '../node_modules/jpeg-camera/dist/swfobject.min.js';
 import '../node_modules/jpeg-camera/dist/canvas-to-blob.min.js';
 
 import JpegCamera from 'jpeg-camera-es6';
