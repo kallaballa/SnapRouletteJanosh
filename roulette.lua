@@ -11,7 +11,7 @@ function receive(handle, message)
       if obj[2] == "submit" then
         local s = Janosh:size("/roulette/.")
         -- detect cheaters by rejecting images with no considerable edges
-	local output = Janosh:capture("echo '" .. obj[4] .. "' | convert inline:- -edge 1 -threshold 30% -format %c histogram:info:- | wc -l 2>&1")
+	local output = Janosh:capture("echo '" .. obj[4] .. "' | convert inline:- -edge 1 -threshold 40% -format %c histogram:info:- | wc -l 2>&1")
         if output == "2\n" then
   	  if s > 0 then
 	    local i = math.random(s - 1)
