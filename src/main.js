@@ -65,6 +65,12 @@ var jc = new JpegCamera(theContainer, {
                         mainCanvas.height = 200;
 			var ctx = mainCanvas.getContext("2d");
 			var strBlob = ArrayBufferToString(reader.result);
+			var strBlob = "";
+
+			for(var i = 0; i < reader.result.length; ++i) {
+				strBlob += String.fromCharCode(reader.result[i]);
+			}
+				
 			var img = new Image();
 			img.onload = function () {
 				ctx.drawImage(img, 0, 0,200,200);
