@@ -10,25 +10,14 @@ import '../node_modules/jpeg-camera/dist/canvas-to-blob.min.js';
 
 import JpegCamera from 'jpeg-camera-es6';
 
-function ArrayBufferToString(buffer) {
-    return BinaryToString(String.fromCharCode.apply(null, Array.prototype.slice.apply(new Uint8Array(buffer))));
+function arrayBufferToString(buffer){
+    var arr = new Uint8Array(buffer);
+    var str = "";
+   for(var i = 0; i < arr.byteLength; ++i) {
+	str = str + String.fromCharCode(arr[i]);
+   }
+    return str;
 }
-
-function BinaryToString(binary) {
-    var error;
-
-    try {
-        return decodeURIComponent(escape(binary));
-    } catch (_error) {
-        error = _error;
-        if (error instanceof URIError) {
-            return binary;
-        } else {
-            throw error;
-        }
-    }
-}
-
 // we seem to need DOMContentLoaded here, because script tags,
 // including our mustache templates aren't necessarily loaded
 // on document.load().
@@ -64,13 +53,8 @@ var jc = new JpegCamera(theContainer, {
           		mainCanvas.width = 200;
                         mainCanvas.height = 200;
 			var ctx = mainCanvas.getContext("2d");
-			var strBlob = ArrayBufferToString(reader.result);
-			var strBlob = "";
-
-			for(var i = 0; i < reader.result.length; ++i) {
-				strBlob += String.fromCharCode(reader.result[i]);
-			}
-				
+			var strBlob = arrayBufferToString(reader.result);
+			
 			var img = new Image();
 			img.onload = function () {
 				ctx.drawImage(img, 0, 0,200,200);
